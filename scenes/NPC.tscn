@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://djhqmnn5gx555"]
+
+[ext_resource type="Script" uid="uid://b8lv15jer3ybu" path="res://scenes/npc.gd" id="1_mhefn"]
+[ext_resource type="PackedScene" uid="uid://dgqe4jxcjsxk4" path="res://assets/models/penguin npc/penguin_npc.glb" id="2_6xvi5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ktgr7"]
+size = Vector3(0.24, 0.67, 0.25)
+
+[node name="root" type="CharacterBody3D" unique_id=1001982454]
+script = ExtResource("1_mhefn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1372171135]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3904841, 0)
+shape = SubResource("BoxShape3D_ktgr7")
+
+[node name="penguin_npc" parent="." unique_id=1696810420 instance=ExtResource("2_6xvi5")]
+transform = Transform3D(-5.6824803e-09, 0, -0.13, 0, 0.13, 0, 0.13, 0, -5.6824803e-09, 0, 0, 0)

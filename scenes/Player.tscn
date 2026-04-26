@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://b1cp4mdoyw14o"]
+
+[ext_resource type="Script" uid="uid://mudfn1oj6fx5" path="res://scenes/player.gd" id="1_p0vlq"]
+[ext_resource type="PackedScene" uid="uid://bjm1egkrdea6u" path="res://assets/models/penguin/penguin.glb" id="2_v6fml"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_collision"]
+size = Vector3(0.24, 0.67, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hitarea"]
+size = Vector3(0.5, 0.8, 0.5)
+
+[node name="root" type="CharacterBody3D" unique_id=163977709]
+script = ExtResource("1_p0vlq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1934629017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.335, 0)
+shape = SubResource("BoxShape3D_collision")
+
+[node name="penguin" parent="." unique_id=2028940426 instance=ExtResource("2_v6fml")]
+transform = Transform3D(-5.6824803e-09, 0, -0.13, 0, 0.13, 0, 0.13, 0, -5.6824803e-09, 0, 0, 0)
+
+[node name="HitArea" type="Area3D" parent="." unique_id=400000001]
+collision_layer = 2
+
+[node name="HitShape" type="CollisionShape3D" parent="HitArea" unique_id=400000002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("BoxShape3D_hitarea")
+
+[node name="CameraArm" type="SpringArm3D" parent="." unique_id=532244707]
+transform = Transform3D(1, 0, 0, 0, 0.7071069, 0.70710665, 0, -0.70710665, 0.7071069, 0, 1.5, 0)
+spring_length = 6.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraArm" unique_id=632284961]
+fov = 47.357574
+
+[editable path="penguin"]

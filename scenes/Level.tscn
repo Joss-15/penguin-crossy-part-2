@@ -1,0 +1,326 @@
+[gd_scene format=3 uid="uid://dhxo55h6d3xbw"]
+
+[ext_resource type="PackedScene" uid="uid://dkp58llpctjmw" path="res://assets/models/floor/floor.glb" id="1_floor"]
+[ext_resource type="PackedScene" uid="uid://b1cp4mdoyw14o" path="res://scenes/Player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://djhqmnn5gx555" path="res://scenes/NPC.tscn" id="3_npc"]
+[ext_resource type="Script" uid="uid://b10mnh67wd21f" path="res://scenes/HUD.gd" id="4_hud"]
+[ext_resource type="PackedScene" uid="uid://v4wlvl1y0er7" path="res://assets/models/Tree.glb" id="5_dke22"]
+[ext_resource type="PackedScene" uid="uid://c5yjxb7nc5bnj" path="res://assets/models/Grass1.glb" id="5_qifjx"]
+[ext_resource type="PackedScene" path="res://scenes/Collectible.tscn" id="6_col"]
+[ext_resource type="Script" uid="uid://cgr4bjoi2cpkn" path="res://scenes/level.gd" id="7_lvl"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_1"]
+rayleigh_color = Color(0.0027595826, 0.07941713, 0.1985457, 1)
+
+[sub_resource type="Sky" id="Sky_1"]
+sky_material = SubResource("PhysicalSkyMaterial_1")
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 2
+sky = SubResource("Sky_1")
+ambient_light_source = 2
+ambient_light_color = Color(0.7, 0.75, 0.9, 1)
+ambient_light_energy = 0.4
+tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(50, 0.2, 50)
+
+[node name="Level" type="Node3D" unique_id=510596382]
+script = ExtResource("7_lvl")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1389162676]
+environment = SubResource("Environment_1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=698978579]
+transform = Transform3D(0.866025, -0.5, 0, 0, 0, -1, 0.5, 0.866025, 0, 0, 12, 6)
+light_color = Color(1, 0.95, 0.85, 1)
+light_energy = 1.619
+shadow_enabled = true
+directional_shadow_max_distance = 50.0
+
+[node name="floor" parent="." unique_id=227697565 instance=ExtResource("1_floor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.41604072, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=229509885]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2064964708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_floor")
+
+[node name="player" parent="." unique_id=542958163 instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="npc1" parent="." unique_id=938595204 instance=ExtResource("3_npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.1, -3.5)
+speed = 7.0
+point_a = Vector3(-8, 0.1, -3.5)
+point_b = Vector3(8, 0.1, -3.5)
+
+[node name="npc2" parent="." unique_id=737517255 instance=ExtResource("3_npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.1, -4.7)
+speed = 6.0
+point_a = Vector3(-7, 0.1, -4.7)
+point_b = Vector3(7, 0.1, -4.7)
+
+[node name="npc3" parent="." unique_id=1001982454 instance=ExtResource("3_npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -5.9)
+speed = 8.0
+point_a = Vector3(-7, 0.1, -5.9)
+point_b = Vector3(7, 0.1, -5.9)
+
+[node name="npc4" parent="." unique_id=1215201145 instance=ExtResource("3_npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -7.1)
+speed = 6.5
+point_a = Vector3(-7, 0.1, -7.1)
+point_b = Vector3(7, 0.1, -7.1)
+
+[node name="npc5" parent="." unique_id=1379272602 instance=ExtResource("3_npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -8.3)
+speed = 9.0
+point_a = Vector3(-7, 0.1, -8.3)
+point_b = Vector3(7, 0.1, -8.3)
+
+[node name="col1" parent="." unique_id=1352310601 instance=ExtResource("6_col")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, -2.5)
+
+[node name="col2" parent="." unique_id=1417482316 instance=ExtResource("6_col")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, -4.3)
+
+[node name="col3" parent="." unique_id=1469026928 instance=ExtResource("6_col")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, -5.5)
+
+[node name="col4" parent="." unique_id=1254487039 instance=ExtResource("6_col")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, -6.7)
+
+[node name="col5" parent="." unique_id=1411561602 instance=ExtResource("6_col")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -7.9)
+
+[node name="col6" parent="." unique_id=233385699 instance=ExtResource("6_col")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, -9.1)
+
+[node name="col7" parent="." unique_id=989290338 instance=ExtResource("6_col")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -1.5)
+
+[node name="Tree" parent="." unique_id=1995743935 instance=ExtResource("5_dke22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9036949, -0.6756409, -13.721626)
+
+[node name="Grass1" parent="." unique_id=843734783 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, 0, -1.2397225, -4.325512)
+
+[node name="Grass2" parent="." unique_id=2002426671 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -1.7481031, -1.2397225, -5.2748694)
+
+[node name="Grass3" parent="." unique_id=479633268 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, 0.96259236, -1.2397225, -6.1985264)
+
+[node name="Grass4" parent="." unique_id=1125696110 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -0.7855108, -1.2397225, -7.1478834)
+
+[node name="Grass5" parent="." unique_id=935167990 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -2.3180814, -1.2397225, -4.325512)
+
+[node name="Grass6" parent="." unique_id=1553822141 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -4.0661845, -1.2397225, -5.2748694)
+
+[node name="Grass7" parent="." unique_id=1070455580 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -1.355489, -1.2397225, -6.1985264)
+
+[node name="Grass8" parent="." unique_id=1837055768 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -3.1035922, -1.2397225, -7.1478834)
+
+[node name="Grass9" parent="." unique_id=775320348 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, 0, -1.2397225, -7.914792)
+
+[node name="Grass10" parent="." unique_id=2037833692 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -1.7481031, -1.2397225, -8.864149)
+
+[node name="Grass11" parent="." unique_id=1412053855 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, 0.96259236, -1.2397225, -9.7878065)
+
+[node name="Grass12" parent="." unique_id=2138658941 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -0.7855108, -1.2397225, -10.737164)
+
+[node name="Grass13" parent="." unique_id=1631585428 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -2.3180814, -1.2397225, -7.914792)
+
+[node name="Grass14" parent="." unique_id=1835837126 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -4.0661845, -1.2397225, -8.864149)
+
+[node name="Grass15" parent="." unique_id=839765957 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -1.355489, -1.2397225, -9.7878065)
+
+[node name="Grass16" parent="." unique_id=925856688 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -3.1035922, -1.2397225, -10.737164)
+
+[node name="Grass17" parent="." unique_id=721875587 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, 1.8892047, -1.2338703, -11.332973)
+
+[node name="Grass18" parent="." unique_id=285820395 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, 0.14110148, -1.2338703, -12.2823305)
+
+[node name="Grass19" parent="." unique_id=1920958554 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, 2.851797, -1.2338703, -13.205986)
+
+[node name="Grass20" parent="." unique_id=358515202 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, 1.1036941, -1.2338703, -14.155343)
+
+[node name="Grass21" parent="." unique_id=1662512151 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -0.42887664, -1.2338703, -11.332973)
+
+[node name="Grass22" parent="." unique_id=1265271432 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -2.17698, -1.2338703, -12.2823305)
+
+[node name="Grass23" parent="." unique_id=2128123265 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, 0.5337156, -1.2338703, -13.205986)
+
+[node name="Grass24" parent="." unique_id=1285199438 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -1.2143877, -1.2338703, -14.155343)
+
+[node name="Grass25" parent="." unique_id=856954759 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, 1.8892047, -1.2338703, -14.922254)
+
+[node name="Grass26" parent="." unique_id=547602066 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, 0.14110148, -1.2338703, -15.871612)
+
+[node name="Grass27" parent="." unique_id=2102617858 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, 2.851797, -1.2338703, -16.795269)
+
+[node name="Grass28" parent="." unique_id=742047196 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, 1.1036941, -1.2338703, -17.744625)
+
+[node name="Grass29" parent="." unique_id=549201483 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -0.42887664, -1.2338703, -14.922254)
+
+[node name="Grass30" parent="." unique_id=1458143774 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -2.17698, -1.2338703, -15.871612)
+
+[node name="Grass31" parent="." unique_id=214327425 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, 0.5337156, -1.2338703, -16.795269)
+
+[node name="Grass32" parent="." unique_id=1805962989 instance=ExtResource("5_qifjx")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, 0, 0, 0, 1.89, -1.2143877, -1.2338703, -17.744625)
+
+[node name="Tree2" parent="." unique_id=1585267286 instance=ExtResource("5_dke22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4764073, -0.6756409, -15.689367)
+
+[node name="Tree3" parent="." unique_id=1226736846 instance=ExtResource("5_dke22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4764073, -0.6756409, -10.829824)
+
+[node name="Tree4" parent="." unique_id=1505193821 instance=ExtResource("5_dke22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.958516, -0.6756409, -10.829824)
+
+[node name="Tree5" parent="." unique_id=656843066 instance=ExtResource("5_dke22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4764073, -0.6756409, -8.612655)
+
+[node name="Tree6" parent="." unique_id=236690265 instance=ExtResource("5_dke22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4764073, -0.6756409, -3.7531118)
+
+[node name="Tree7" parent="." unique_id=806192624 instance=ExtResource("5_dke22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.958516, -0.6756409, -3.7531118)
+
+[node name="Tree8" parent="." unique_id=368139156 instance=ExtResource("5_dke22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0007725, -0.6756409, -7.6921873)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=2080870232]
+script = ExtResource("4_hud")
+
+[node name="AttemptsLabel" type="Label" parent="HUD" unique_id=1438297428]
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 300.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 20
+text = "Intentos: 0"
+
+[node name="ScoreLabel" type="Label" parent="HUD" unique_id=687613933]
+offset_left = 20.0
+offset_top = 40.0
+offset_right = 300.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 20
+text = "⭐ Estrellas: 0"
+
+[node name="HighScoreLabel" type="Label" parent="HUD" unique_id=267669830]
+offset_left = 20.0
+offset_top = 70.0
+offset_right = 300.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 20
+text = "🏆 Récord: 0"
+
+[node name="MessageLabel" type="Label" parent="HUD" unique_id=691890547]
+offset_left = 20.0
+offset_top = 110.0
+offset_right = 750.0
+offset_bottom = 145.0
+theme_override_font_sizes/font_size = 24
+
+[node name="AdviceLabel" type="Label" parent="HUD" unique_id=1408112035]
+offset_left = 20.0
+offset_top = 150.0
+offset_right = 800.0
+offset_bottom = 185.0
+theme_override_font_sizes/font_size = 20
+autowrap_mode = 3
+
+[node name="GameOverPanel" type="Panel" parent="HUD" unique_id=1544562721]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -190.0
+offset_right = 220.0
+offset_bottom = 190.0
+
+[node name="Title" type="Label" parent="HUD/GameOverPanel" unique_id=347251071]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 20.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 26
+text = "¡Fin de la partida!"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="HUD/GameOverPanel" unique_id=615326492]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 75.0
+offset_bottom = 110.0
+theme_override_font_sizes/font_size = 22
+text = "Estrellas: 0"
+horizontal_alignment = 1
+
+[node name="RecordLabel" type="Label" parent="HUD/GameOverPanel" unique_id=1314615723]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 112.0
+offset_bottom = 147.0
+theme_override_font_sizes/font_size = 22
+text = "🏆 Récord: 0"
+horizontal_alignment = 1
+
+[node name="NewRecordLabel" type="Label" parent="HUD/GameOverPanel" unique_id=1020688907]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 148.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(1, 0.85, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "🌟 ¡Nuevo récord!"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="HUD/GameOverPanel" unique_id=435893757]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_top = 228.0
+offset_right = 110.0
+offset_bottom = 268.0
+theme_override_font_sizes/font_size = 20
+text = "🔄 Jugar de nuevo"
